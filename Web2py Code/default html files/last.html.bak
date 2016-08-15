@@ -1,0 +1,10 @@
+<html>
+   <head></head>
+   <body>
+      <h1>{{=message1}}</h1>
+      <h2>{{=message2}}</h2>
+      <h2>{{=session.script}}</h2>
+      <input type="button"value="back to the main page"
+      onclick="document.location='{{=URL(r=request,f='experimenter')}}'">
+   </body>
+</html>

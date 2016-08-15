@@ -1,0 +1,21 @@
+{{extend 'layout.html'}}
+<h3>Data Sets:</h3>
+
+{{if rows:}}
+    <div style="overflow: auto;" width="80%">
+    <table>
+    <tr> <th> Dataset Name </th> <th> Description </th> <th>Total Number of Images </th> </tr>
+    {{
+        for row in rows:
+        =TR(TD(row.name), TD("%.50s ..." % row.description), TD(db(db.uploads.dataset==row.id).count()), A(str(T('Edit')),_href=URL('editDataset',args=row.id)), A(str(T('AddImage')),_href=URL('insertImage',args=row.id)),A(str(T('EditImages')),_href=URL('DSimageEdit',args=row.id)),A(str(T('Delete')),_href=URL('deleteDataset',args=row.id)))
+        pass 
+    }}
+    </table>
+
+
+    </div>
+{{pass}}
+[ {{=A(str(T('Create new Data Set')),_href=URL('createDataset'))}} ]
+<!--
+[ {{=A(str(T('Manage images')),_href=URL('manage'))}} ] -->
+[ {{=A(str(T('Manage images(self)')),_href=URL('imageEdit'))}} ]<br/><br/>

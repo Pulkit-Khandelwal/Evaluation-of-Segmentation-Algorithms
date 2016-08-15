@@ -1,0 +1,5 @@
+{{extend 'layout.html'}}
+<h3>{{=Briefing}}</h3>
+
+<h3>{{=Consent}}</h3>
+{{=form}}

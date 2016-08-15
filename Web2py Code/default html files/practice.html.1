@@ -1,0 +1,76 @@
+{{extend 'layout.html'}}
+   <h4>
+<form>
+ <INPUT type="button" value="You can cancel the experiment if you wish!"
+    onclick="document.location='{{=URL(r=request,f='cancelExp')}}'">
+        </form>
+</h4>
+<form>
+     <INPUT type="button" value="Confused? Click to re-read the instructions!"
+     onclick="window.location='{{=URL(r=request,f='instro')}}','_blank'">
+</form>
+<h1>Here should be the practice</h1>
+<form>
+    <INPUT type="button" value="submit"
+onclick="document.location='{{=URL(r=request,f='pResult')}}'">
+</form>
+
+    
+    {{response.files.append(URL(r=request, c='static', f='css/paint.css'))}}
+{{extend 'layout.html'}}
+
+<div class="wrapper">
+    <div>
+        <canvas id="sheet"></canvas>
+    </div>
+    <div class="instructions">
+        <div class="statusbar fgbg" id="fg">Foreground</div>
+        <div class="statusbar fgbg" id="bg">Background</div><br/>
+        Click and drag on the image to draw lines.<br/>
+        Press the <strong>F</strong> key to draw foreground.<br/>
+        Press the <strong>B</strong> key to draw background.<br/>
+        Press the <strong>E</strong> key to erase.<br/>
+        Press the <strong>Enter</strong> key when you are finished drawing to move to the next image.<br/>
+        <a href="http://webmasters.stackexchange.com/questions/8525/how-to-open-the-javascript-console-in-different-browsers" target="_blank">Here is how to open the JavaScript console in different browsers.</a>
+    </div>
+    <div class="push"></div>
+</div>
+<div class="footer">
+    <small>
+        HTML5 Canvas drawing code borrowed from <a href="http://stackoverflow.com/a/22891828" target="_blank">StackOverflow user moose</a><br/>
+    </small>
+</div>
+<script type="text/javascript" src="../static/js/paint.js"></script>
+<script>
+log.image="{{=URL('download', args=images[i].image)}}";
+img.src="{{=URL('download', args=images[i].image)}}";
+log.filename="{{=URL('download', args=images[i].filename)}}";
+jQuery(document).keypress(function(e) {
+    if(e.which == 13) {
+        finish();
+        var str = JSON.stringify(log);
+        console.log(str);
+        $.ajax({
+            type: 'POST',
+            url: '{{=URL('default', 'newImage')}}',
+            contentType: "application/json; charset=utf-8", 
+            data: str,
+            dataType: 'json',
+            success:  function(data){
+                console.log(data);
+                {{if i < Max-1:}}
+                    document.location='{{=URL(r=request, f='practice')}}'
+                {{elif PR:}}
+                    document.location='{{=URL(r=request,f='pResult')}}'
+
+                {{pass}}
+            },
+            error: function(xhr, textStatus, errorThrown) {
+                console.log(xhr);
+                console.log(textStatus);
+                console.log(errorThrown);
+            }
+        });
+    }
+});
+</script>

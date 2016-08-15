@@ -1,0 +1,16 @@
+{{extend 'layout.html'}}
+        <h5>
+        <form>
+     <INPUT type="button" value="Click to select an existing User!"
+    onclick="document.location='{{=URL(r=request,f='existinguser')}}'">
+</form>
+             <table>
+    <tr> <th> Image </th> </tr>
+    {{
+        for image in images:
+        =TR(A(str(T('View')),_href=URL("show", args=[person.id,rowId])))}}
+        {{pass}}
+    </table>
+            </h5>
+        <h5>Fill the form below to create a new user!</h5>
+{{=form}}
