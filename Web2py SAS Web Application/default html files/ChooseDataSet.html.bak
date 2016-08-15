@@ -1,0 +1,21 @@
+{{extend 'layout.html'}}
+<h3>Select Trial Data Set</h3>
+<h4>
+Select or create a new dataset
+</h4>
+{{if rows:}}
+    <div style="overflow: auto;" width="80%">
+    <table>
+    <tr> <th> Dataset Name </th> <th> Description </th> </tr>
+    {{
+        for row in rows:
+        =TR(TD(row.name), TD(row.description))
+        pass 
+    }}
+    </table>
+    </div>
+{{pass}}
+[ {{=A(str(T('Create new Data Set')),_href=URL('createDataset'))}} ]<br/><br/>
+{{=form}}
+<input type="button"value="Cancel"
+    onclick="document.location='{{=URL(r=request,f='cancelExp')}}'">

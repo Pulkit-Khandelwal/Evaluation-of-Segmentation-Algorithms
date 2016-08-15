@@ -1,0 +1,20 @@
+{{extend 'layout.html'}}
+<h1>Experiment complete!</h1>
+<h2>This is your experiment result:</h2>
+<form>
+{{if PTS:}}
+    <INPUT type="button" value="Ok!"
+    onclick="document.location='{{=URL(r=request,f='questionnaire')}}'">
+{{elif DE:}}
+    <INPUT type="button" value="Ok!"
+    onclick="document.location='{{=URL(r=request,f='debriefing')}}'">
+{{else:}}
+    <INPUT type="button" value="Ok!"
+    onclick="document.location='{{=URL(r=request,f='last')}}'">
+{{pass}}
+</form>
+        
+  <form>
+ <INPUT type="button" value="Next Image"
+    onclick=window.close('{{=URL(r=request,f='expResult')}}','_blank')>
+        </form>

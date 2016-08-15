@@ -1,0 +1,10 @@
+{{extend 'layout.html'}}
+<h3>Create Participant Debriefing</h3>
+<h4>
+Provide the debriefing text that will be shown to the participant after they have finished the experimental trials.
+</h4>
+<h4>
+{{=form}}
+<input type="button"value="Cancel"
+    onclick="document.location='{{=URL(r=request,f='ME')}}'">
+</h4>

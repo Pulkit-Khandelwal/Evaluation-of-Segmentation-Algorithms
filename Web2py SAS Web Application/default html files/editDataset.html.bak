@@ -1,0 +1,15 @@
+{{extend 'layout.html'}}
+<h2>{{=T("database")}} {{=A(request.args[0],_href=URL('index'))}}
+    {{if hasattr(table,'_primarykey'):}}
+      {{fieldname=request.vars.keys()[0]}}
+      {{dbname=request.args[0]}}
+      {{tablename=request.args[1]}}
+      {{cond = table[fieldname].type in ['string','text'] and '!=""' or '>0'}}      
+      {{=T("table")}} {{=A(tablename,_href=URL('select',args=dbname,vars=dict(query='%s.%s.%s%s'%(dbname,tablename,fieldname,cond))))}}
+      {{=T("record")}} {{=A('%s=%s'%request.vars.items()[0],_href=URL('update',args=request.args[:2],vars=request.vars))}}
+    {{else:}}
+      {{=T("table")}} {{=A(request.args[1],_href=URL('select',args=request.args[0],vars=dict(query='%s.%s.id>0'%tuple(request.args[:2]))))}}
+      {{=T("record id")}} {{=A(request.args[2],_href=URL('update',args=request.args[:3]))}}
+    {{pass}}
+  </h2>
+  <h3>{{=T("Edit current record")}}</h3><br/><br/>{{=form}}

@@ -1,0 +1,18 @@
+<!--
+{{extend 'layout.html'}}
+<h3>Manage Image</h3>
+
+{{if images:}}
+    <div style="overflow: auto;" width="80%">
+    <table>
+    <tr> <th> Dataset </th>  <th> Image </th> </tr>
+    {{
+        for image in images:
+        =TR(TD(db(db.dataset.id==image.dataset).select().first().name),TD(image.filename),IMG(_src=URL('download', args=image.image),_width='50px'),  A(str(T('View')),_href=URL("show", args=[image.id,'imageEdit'])), A(str(T('Delete')),_href=URL('deleteImage',args=image.id)))}}
+        {{pass}}
+    </table>
+    
+    </div>
+    {{pass}}
+[ {{=A(str(T('back to Data Set Management')),_href=URL('MDS'))}} ]<br/><br/>
+-->
