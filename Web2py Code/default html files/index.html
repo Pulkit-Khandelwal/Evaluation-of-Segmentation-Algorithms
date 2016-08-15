@@ -1,8 +1,0 @@
-{{extend 'layout.html'}}
-<form>
-    <h3>Are you an experimenter or an user?</h3>
-    <INPUT type="button" value="Experimenter"
-    onclick="document.location='{{=URL(r=request,f='experimenter')}}'">
-    <INPUT type="button" value="User"
-    onclick="document.location='{{=URL(r=request,f='informedConsent')}}'">
-</form>

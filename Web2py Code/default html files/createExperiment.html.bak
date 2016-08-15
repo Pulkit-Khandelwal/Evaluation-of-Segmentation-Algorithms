@@ -1,8 +1,0 @@
-{{extend 'layout.html'}}
-<h2>Create New Experiment</h2>
-<h4>select each of the floowing to create your experiment:</h4>
-<h4>
-{{=form}}
-<input type="button"value="Cancel"
-    onclick="document.location='{{=URL(r=request,f='ME')}}'">
-</h4>

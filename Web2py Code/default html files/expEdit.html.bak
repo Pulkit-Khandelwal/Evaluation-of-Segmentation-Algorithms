@@ -1,8 +1,0 @@
-{{extend 'layout.html'}}
-<h3>This is page to edit the experiment if the experimenter want to</h3>
-<form>
-    <input type="button"value="back to the experimenter page"
-    onclick="document.location='{{=URL(r=request,f='experimenter')}}'">
-    <input type="button"value="back to the main page"
-    onclick="document.location='{{=URL(r=request,f='index')}}'">
-</form>

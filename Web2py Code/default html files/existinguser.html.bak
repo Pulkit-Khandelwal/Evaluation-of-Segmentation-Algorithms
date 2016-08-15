@@ -1,8 +1,0 @@
-{{extend 'layout.html'}}
-<h3>Select an exisiting user</h3>
-
-{{if rows:}}
-    <div style="overflow: auto;" width="80%">
-       </div>
-
-{{=form}}
